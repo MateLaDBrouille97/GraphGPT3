@@ -61,7 +61,8 @@ def main():
       
       csv_reader2.to_csv("filename.csv", header=True, index=False, index_label='Index', sep='\t', encoding='utf-8', columns=csv_reader2.columns[1:])
       csv_reader2.to_csv("data.csv", header=True, index=False, index_label='Index', sep='\t', encoding='utf-8', columns=csv_reader2.columns[1:])
-      csv_reader3 = pd.read_csv("filename.csv")
+      csv_file="filename.csv"
+      csv_reader3 = pd.read_csv(csv_file)
       # with open(py_file, 'w') as f:
       #    f.write('dataframe2 = {\n')
       #    for column_name in columns_names:

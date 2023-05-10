@@ -60,16 +60,14 @@ def main():
       columns_names = csv_reader2.columns.tolist()
       
       csv_reader2.to_csv("filename.csv", header=True, index=False, index_label='Index', sep='\t', encoding='utf-8', columns=csv_reader2.columns[1:])
-      csv_reader2.to_csv("data.csv", header=True, index=False, index_label='Index', sep='\t', encoding='utf-8', columns=csv_reader2.columns[1:])
-      csv_reader3 = pd.read_csv("filename.csv")
-      # with open(py_file, 'w') as f:
-      #    f.write('dataframe2 = {\n')
-      #    for column_name in columns_names:
-      #       f.write(f"'{column_name}': {csv_reader2[column_name].tolist()},\n")
-      #    f.write('}\n')
+      with open(py_file, 'w') as f:
+         f.write('dataframe2 = {\n')
+         for column_name in columns_names:
+            f.write(f"'{column_name}': {csv_reader2[column_name].tolist()},\n")
+         f.write('}\n')
 
-      # data_fr=pd.DataFrame(dataframe2)
-      # data_fr.columns = data_fr.columns.str.strip()
+      data_fr=pd.DataFrame(dataframe2)
+      data_fr.columns = data_fr.columns.str.strip()
 
       dataf=csv_reader2.head()
       with st.expander('Dataframe'):
@@ -78,7 +76,7 @@ def main():
       
    if st.button("Run", type="primary"):   
     if user_question:
-      result=qg(csv_reader2=csv_reader3,user_question=user_question)
+      result=qg(csv_reader2="filename.csv",user_question=user_question)
       st.write(result)
       st.set_option('deprecation.showPyplotGlobalUse', False)
       st.pyplot(print(result))
